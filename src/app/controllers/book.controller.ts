@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Router } from "express";
 import BookZodSchema from "../validationSchema/book.validation";
 import { Book } from "../models/book.model";
 
-export const bookRouter = express.Router();
+export const bookRouter: Router = express.Router();
 
 bookRouter.post("/", async (req: Request, res: Response) => {
   try {
@@ -76,7 +76,16 @@ bookRouter.get("/:bookId", async (req: Request, res: Response) => {
 bookRouter.put("/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
-    const updatedBody = req.body;
+    let updatedBody = req.body;
+    const quantity = updatedBody.copies;
+    const existingCopies = await Book.findById(bookId);
+    const newCopies = existingCopies?.copies + quantity;
+    if (quantity > 0) {
+      updatedBody.available = quantity > 0;
+    }
+    if (newCopies) {
+      updatedBody.copies = newCopies;
+    }
     const data = await Book.findByIdAndUpdate(bookId, updatedBody, {
       new: true,
     });
