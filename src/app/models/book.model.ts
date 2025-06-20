@@ -1,3 +1,4 @@
+import { optional } from "zod";
 import { model, Schema } from "mongoose";
 import { IBook } from "../interfaces/book.interface";
 
@@ -28,6 +29,7 @@ const bookSchema = new Schema<IBook>(
         ],
         message: "Must be one of emuns , but got {VALUE}",
       },
+      uppercase: true,
     },
     isbn: {
       type: String,
@@ -47,8 +49,6 @@ const bookSchema = new Schema<IBook>(
     },
     available: {
       type: Boolean,
-      required: true,
-      trim: true,
       default: true,
     },
   },
