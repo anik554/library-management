@@ -1,2 +1,7 @@
-PORT=5000
-MONGODB_URL=mongodb+srv://anikimtiaz:anikimtiaz@cluster0.irbpcqo.mongodb.net/library-management?retryWrites=true&w=majority&appName=Cluster0
+# Library Management
+
+Develop a Library Management System using Express, TypeScript, and MongoDB (via Mongoose)
+
+## Project Setup
+
+
