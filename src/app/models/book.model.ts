@@ -1,4 +1,3 @@
-import { optional } from "zod";
 import { model, Schema } from "mongoose";
 import { IBook } from "../interfaces/book.interface";
 
@@ -6,17 +5,17 @@ const bookSchema = new Schema<IBook>(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Title is required"],
       trim: true,
     },
     author: {
       type: String,
-      required: true,
+      required: [true, "Author is required"],
       trim: true,
     },
     genre: {
       type: String,
-      required: true,
+      required: [true, "Genre is required"],
       trim: true,
       enum: {
         values: [
@@ -33,7 +32,7 @@ const bookSchema = new Schema<IBook>(
     },
     isbn: {
       type: String,
-      required: true,
+      required: [true, "ISBN is required"],
       trim: true,
       unique: true,
     },
@@ -43,7 +42,7 @@ const bookSchema = new Schema<IBook>(
     },
     copies: {
       type: Number,
-      required: true,
+      required: [true, "Number of Copies is required"],
       trim: true,
       min: [0, "Copies must be a positive number, got {VALUE}"],
     },
@@ -57,5 +56,14 @@ const bookSchema = new Schema<IBook>(
     timestamps: true,
   }
 );
+
+bookSchema.pre("save",  function(next){
+  if(this.copies === 0){
+    this.available = false
+  }else{
+    this.available = true
+  }
+  next()
+})
 
 export const Book = model<IBook>("Book", bookSchema);

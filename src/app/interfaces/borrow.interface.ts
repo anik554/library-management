@@ -6,5 +6,5 @@ export interface IBorrow {
   dueDate: Date;
 }
 export interface BorrowStaticMethods extends Model<IBorrow>{
-   validateQuantity(bookId: string, quantity: number): string | number;
+   validateQuantity(bookId: string, quantity: number): void;
 }

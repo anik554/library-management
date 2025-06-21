@@ -1,4 +1,4 @@
-import z, { optional } from "zod";
+import z from "zod";
 
 const BookZodSchema = z.object({
   title: z.string(),

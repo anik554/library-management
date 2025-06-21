@@ -48,9 +48,9 @@ Developed Library Management System using Express, TypeScript, and MongoDB (via 
 
 - Create Book
 - Get All Books with
-    -filter
-    -sort
-    -limit
+    - filter
+    - sort
+    - limit
 - Get Book by ID
 - Update Book
 - Delete Book
