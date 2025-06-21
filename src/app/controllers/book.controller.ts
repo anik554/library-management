@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import BookZodSchema from "../validationSchema/book.validation";
 import { Book } from "../models/book.model";
+import mongoose from "mongoose";
 
 export const bookRouter: Router = express.Router();
 
@@ -57,6 +58,18 @@ bookRouter.get("/", async (req: Request, res: Response) => {
 bookRouter.get("/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
+
+    if (!mongoose.Types.ObjectId.isValid(bookId)) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid book id format",
+        error: {
+          name: "Invalid Object id",
+          value: bookId,
+        },
+      });
+      return;
+    }
     const data = await Book.findById(bookId);
     res.status(200).json({
       success: true,
@@ -76,6 +89,17 @@ bookRouter.get("/:bookId", async (req: Request, res: Response) => {
 bookRouter.put("/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
+    if (!mongoose.Types.ObjectId.isValid(bookId)) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid book id format",
+        error: {
+          name: "Invalid Object id",
+          value: bookId,
+        },
+      });
+      return;
+    }
     let updatedBody = req.body;
     const quantity = updatedBody.copies;
     const existingCopies = await Book.findById(bookId);
@@ -108,6 +132,17 @@ bookRouter.put("/:bookId", async (req: Request, res: Response) => {
 bookRouter.delete("/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
+    if (!mongoose.Types.ObjectId.isValid(bookId)) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid book id format",
+        error: {
+          name: "Invalid Object id",
+          value: bookId,
+        },
+      });
+      return;
+    }
     await Book.findByIdAndDelete(bookId);
     res.status(200).json({
       success: true,
