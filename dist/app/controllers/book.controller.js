@@ -16,6 +16,7 @@ exports.bookRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const book_validation_1 = __importDefault(require("../validationSchema/book.validation"));
 const book_model_1 = require("../models/book.model");
+const mongoose_1 = __importDefault(require("mongoose"));
 exports.bookRouter = express_1.default.Router();
 exports.bookRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -71,6 +72,17 @@ exports.bookRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.bookRouter.get("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
+        if (!mongoose_1.default.Types.ObjectId.isValid(bookId)) {
+            res.status(400).json({
+                success: false,
+                message: "Invalid book id format",
+                error: {
+                    name: "Invalid Object id",
+                    value: bookId,
+                },
+            });
+            return;
+        }
         const data = yield book_model_1.Book.findById(bookId);
         res.status(200).json({
             success: true,
@@ -90,6 +102,17 @@ exports.bookRouter.get("/:bookId", (req, res) => __awaiter(void 0, void 0, void 
 exports.bookRouter.put("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
+        if (!mongoose_1.default.Types.ObjectId.isValid(bookId)) {
+            res.status(400).json({
+                success: false,
+                message: "Invalid book id format",
+                error: {
+                    name: "Invalid Object id",
+                    value: bookId,
+                },
+            });
+            return;
+        }
         let updatedBody = req.body;
         const quantity = updatedBody.copies;
         const existingCopies = yield book_model_1.Book.findById(bookId);
@@ -122,6 +145,17 @@ exports.bookRouter.put("/:bookId", (req, res) => __awaiter(void 0, void 0, void 
 exports.bookRouter.delete("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bookId = req.params.bookId;
+        if (!mongoose_1.default.Types.ObjectId.isValid(bookId)) {
+            res.status(400).json({
+                success: false,
+                message: "Invalid book id format",
+                error: {
+                    name: "Invalid Object id",
+                    value: bookId,
+                },
+            });
+            return;
+        }
         yield book_model_1.Book.findByIdAndDelete(bookId);
         res.status(200).json({
             success: true,
