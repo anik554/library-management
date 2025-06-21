@@ -30,3 +30,36 @@ Developed Library Management System using Express, TypeScript, and MongoDB (via 
 ├── package-lock.json      # 🔒 Dependency lock file
 ├── package.json           # 📦 Project metadata & scripts
 └── tsconfig.json          # config typescript run file
+```
+
+## Project Features
+
+- Schema validation
+- Business logic enforcement
+- Aggregation pipeline
+- Mongoose static method
+- Generic error response
+- Mongoose middleware (pre, post)
+- Filtering features , limit, group, lookup, sort, sortBy, populate, unwind (Mongoose Query)
+
+## Project API
+
+Book
+===========
+- Create Book
+- Get All Books with
+    -filter
+    -sort
+    -limit
+- Get Book by ID
+- Update Book
+- Delete Book
+
+Borrow
+===========
+- Borrow a Book
+    - implement here business logic with Book collection
+- Borrowed Books Summary (Using Aggregation)
+    - group
+    - sum
+    - count
