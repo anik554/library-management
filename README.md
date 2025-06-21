@@ -15,21 +15,18 @@ Developed Library Management System using Express, TypeScript, and MongoDB (via 
 
 ## Project Structure
 
-- node_modules (folder)
-- src (folder)
-    * app (folder)
-        * cotrollers (folder)
-            *controller files (file)
-        * interfaces (folder)
-            *interfaces files (file)
-        * models (folder)
-            *models file (file)
-        * validationSchema (folder)
-            *validations file (file)
-    * app.ts (file)
-    * server.ts (file)
-- .env
-- .gitignore
--  package-lock.json
--  package.json
--  tsconfig.json
+```bash
+├── node_modules/          # Third-party dependencies
+├── src/                   # Source code directory
+│   ├── app/               # Application components
+│   │   ├── controllers/   # 🎮 Controller files
+│   │   ├── interfaces/    # 📜 TypeScript interfaces
+│   │   ├── models/        # 🏗️ Database models
+│   │   └── validationSchema/  # ✅ Validation schemas
+│   ├── app.ts             # Main application config
+│   └── server.ts          # Server entry point
+├── .env                   # 🌱 Environment variables
+├── .gitignore             # 🙈 Git ignore rules
+├── package-lock.json      # 🔒 Dependency lock file
+├── package.json           # 📦 Project metadata & scripts
+└── tsconfig.json          # config typescript run file
