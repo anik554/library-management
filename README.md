@@ -44,7 +44,7 @@ Developed Library Management System using Express, TypeScript, and MongoDB (via 
 
 ## Project API
 
-###A Book
+### Book
 
 - Create Book
 - Get All Books with
