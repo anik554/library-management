@@ -44,8 +44,8 @@ Developed Library Management System using Express, TypeScript, and MongoDB (via 
 
 ## Project API
 
-Book
-====
+###A Book
+
 - Create Book
 - Get All Books with
     -filter
@@ -55,8 +55,8 @@ Book
 - Update Book
 - Delete Book
 
-Borrow
-====
+### Borrow
+
 - Borrow a Book
     - implement here business logic with Book collection
 - Borrowed Books Summary (Using Aggregation)
